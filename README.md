@@ -44,8 +44,8 @@ A pixel-perfect React Native clone of the Facebook mobile app's home page interf
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/facebook-home-clone.git
-   cd facebook-home-clone
+   git clone https://github.com/yourusername/facebook.git
+   cd facebook
    ```
 
 2. **Install dependencies**
@@ -75,17 +75,19 @@ A pixel-perfect React Native clone of the Facebook mobile app's home page interf
 ## 📁 Project Structure
 
 ```
-facebook/
-├── src/
-│   ├── components/
-│   │   └── FacebookHome.tsx
-│   ├── types/
-│   │   └── Post.ts
-│   └── assets/
-├── android/
-├── ios/
-├── package.json
-└── README.md
+├── README.md
+└── facebook
+    ├── .gitignore
+    ├── App.js
+    ├── app.json
+    ├── assets
+        ├── adaptive-icon.png
+        ├── favicon.png
+        ├── icon.png
+        └── splash-icon.png
+    ├── index.js
+    ├── package-lock.json
+    └── package.json
 ```
 
 ## 🎨 UI/UX Features
