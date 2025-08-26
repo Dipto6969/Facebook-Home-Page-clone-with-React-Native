@@ -1,4 +1,8 @@
-import { View, Text, ScrollView, Image, TouchableOpacity, StyleSheet, StatusBar, SafeAreaView } from "react-native"
+import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet, StatusBar, SafeAreaView } from "react-native"
+import { Ionicons } from '@expo/vector-icons'
+import AntDesign from '@expo/vector-icons/AntDesign';
+import EvilIcons from '@expo/vector-icons/EvilIcons';
+
 
 const FacebookHome = () => {
   const posts = [
@@ -52,9 +56,16 @@ const FacebookHome = () => {
     },
   ]
 
+  const stories = [
+    { id: 1, name: "Your Story", isAddStory: true },
+    { id: 2, name: "Story 1", avatar: "https://images.unsplash.com/photo-1500000001?w=80&h=80&fit=crop&crop=face" },
+    { id: 3, name: "Story 2", avatar: "https://images.unsplash.com/photo-1500000002?w=80&h=80&fit=crop&crop=face" },
+    { id: 4, name: "Story 3", avatar: "https://images.unsplash.com/photo-1500000003?w=80&h=80&fit=crop&crop=face" },
+    { id: 5, name: "Story 4", avatar: "https://images.unsplash.com/photo-1500000004?w=80&h=80&fit=crop&crop=face" },
+    { id: 6, name: "Story 5", avatar: "https://images.unsplash.com/photo-1500000005?w=80&h=80&fit=crop&crop=face" },
+  ]
 
-
-  const PostItem = ({ post }) => (
+  const PostItem = ({ item: post }) => (
     <View style={styles.postContainer}>
       {/* Post Header */}
       <View style={styles.postHeader}>
@@ -64,7 +75,7 @@ const FacebookHome = () => {
           <Text style={styles.timeAgo}>{post.timeAgo}</Text>
         </View>
         <TouchableOpacity style={styles.moreButton}>
-          <Text style={styles.moreText}>⋯</Text>
+          <Ionicons name="ellipsis-horizontal" size={20} color="#65676b" />
         </TouchableOpacity>
       </View>
 
@@ -76,7 +87,10 @@ const FacebookHome = () => {
 
       {/* Post Stats */}
       <View style={styles.postStats}>
-        <Text style={styles.statsText}>👍 {post.likes}</Text>
+        <View style={styles.leftStats}>
+          <AntDesign style={{ marginRight: -10 }} name="like1" size={18} color="#4986FB" />
+          <Text style={styles.statsText}> {post.likes}</Text>
+        </View>
         <View style={styles.rightStats}>
           <Text style={styles.statsText}>{post.comments} comments</Text>
           <Text style={styles.statsText}>{post.shares} shares</Text>
@@ -86,13 +100,16 @@ const FacebookHome = () => {
       {/* Action Buttons */}
       <View style={styles.actionButtons}>
         <TouchableOpacity style={styles.actionButton}>
-          <Text style={styles.actionText}>👍 Like</Text>
+           <AntDesign style={{ fontWeight: 'normal' }} name="like2" size={24} color="black" />
+          <Text style={styles.actionText}> Like</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.actionButton}>
-          <Text style={styles.actionText}>💬 Comment</Text>
+          <Ionicons name="chatbubble-outline" size={20} color="#65676b" />
+          <Text style={styles.actionText}> Comment</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.actionButton}>
-          <Text style={styles.actionText}>➢ Share</Text>
+          <Ionicons name="arrow-redo-outline" size={20} color="#65676b" />
+          <Text style={styles.actionText}> Share</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -105,33 +122,52 @@ const FacebookHome = () => {
         style={styles.createPostAvatar}
       />
       <TouchableOpacity style={styles.createPostInput}>
-        <Text style={styles.createPostText}>What&apos;s on your mind?</Text>
+        <Text style={styles.createPostText}>What's on your mind?</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.photoButton}>
-        <Text style={styles.photoIcon}>🏞️</Text>
+        <Ionicons name="images-outline" size={24} color="#42b883" />
       </TouchableOpacity>
     </View>
   )
 
-  const StoriesSection = () => (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.storiesContainer}>
-      <TouchableOpacity style={styles.addStoryButton}>
-        <View style={styles.addStoryIcon}>
-          <Text style={styles.plusIcon}>+</Text>
+  const StoryItem = ({ item }) => (
+    <TouchableOpacity style={styles.storyItem}>
+      {item.isAddStory ? (
+        <View style={styles.addStoryButton}>
+          <View style={styles.addStoryIcon}>
+            <Ionicons name="add" size={24} color="#1877f2" />
+          </View>
+          <Text style={styles.storyText}>{item.name}</Text>
         </View>
-        <Text style={styles.storyText}>Your Story</Text>
-      </TouchableOpacity>
-      {[1, 2, 3, 4, 5].map((item) => (
-        <TouchableOpacity key={item} style={styles.storyItem}>
-          <Image
-            source={{ uri: `https://images.unsplash.com/photo-150000000${item}?w=80&h=80&fit=crop&crop=face` }}
-            style={styles.storyAvatar}
-          />
-          <Text style={styles.storyText}>Story {item}</Text>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
+      ) : (
+        <View style={styles.storyItem}>
+          <Image source={{ uri: item.avatar }} style={styles.storyAvatar} />
+          <Text style={styles.storyText}>{item.name}</Text>
+        </View>
+      )}
+    </TouchableOpacity>
   )
+
+  const renderFeedItem = ({ item, index }) => {
+    if (index === 0) {
+      return (
+        <View>
+          <CreatePostSection />
+          <View style={styles.storiesContainer}>
+            <FlatList
+              data={stories}
+              renderItem={StoryItem}
+              keyExtractor={(item) => item.id.toString()}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+            />
+          </View>
+          <PostItem item={item} />
+        </View>
+      )
+    }
+    return <PostItem item={item} />
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -142,10 +178,10 @@ const FacebookHome = () => {
         <Text style={styles.headerTitle}>facebook</Text>
         <View style={styles.headerIcons}>
           <TouchableOpacity style={styles.iconButton}>
-            <Text style={styles.icon}>🔍︎</Text>
+            <Ionicons name="search" size={20} color="#1c1e21" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconButton}>
-            <Text style={styles.icon}>💬</Text>
+            <Ionicons name="chatbubbles" size={20} color="#1c1e21" />
           </TouchableOpacity>
         </View>
       </View>
@@ -153,38 +189,33 @@ const FacebookHome = () => {
       {/* Navigation Tabs - Fixed */}
       <View style={styles.navigationTabs}>
         <TouchableOpacity style={[styles.navTab, styles.activeTab]}>
-          <Text style={styles.navIcon}>🏠︎</Text>
+          <Ionicons name="home" size={24} color="#1877f2" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.navTab}>
-          <Text style={styles.navIcon}>▶️</Text>
+          <Ionicons name="play" size={24} color="#65676b" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.navTab}>
-          <Text style={styles.navIcon}>👥</Text>
+          <Ionicons name="people" size={24} color="#65676b" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.navTab}>
-          <Text style={styles.navIcon}>🛒</Text>
+          <Ionicons name="storefront" size={24} color="#65676b" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.navTab}>
-          <Text style={styles.navIcon}>🔔</Text>
+          <Ionicons name="notifications" size={24} color="#65676b" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.navTab}>
-          <Text style={styles.navIcon}>☰</Text>
+          <Ionicons name="menu" size={24} color="#65676b" />
         </TouchableOpacity>
       </View>
 
-      {/* Main Feed - Scrollable (includes Create Post, Stories, and Posts) */}
-      <ScrollView style={styles.feed} showsVerticalScrollIndicator={false}>
-        {/* Create Post Section - Scrollable */}
-        <CreatePostSection />
-        
-        {/* Stories Section - Scrollable */}
-        <StoriesSection />
-        
-        {/* Posts Feed */}
-        {posts.map((post) => (
-          <PostItem key={post.id} post={post} />
-        ))}
-      </ScrollView>
+      {/* Main Feed using FlatList */}
+      <FlatList
+        data={posts}
+        renderItem={renderFeedItem}
+        keyExtractor={(item) => item.id.toString()}
+        showsVerticalScrollIndicator={false}
+        style={styles.feed}
+      />
     </SafeAreaView>
   )
 }
@@ -219,9 +250,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#f0f2f5",
     borderRadius: 20,
   },
-  icon: {
-    fontSize: 18,
-  },
   navigationTabs: {
     flexDirection: "row",
     backgroundColor: "#ffffff",
@@ -237,9 +265,6 @@ const styles = StyleSheet.create({
   activeTab: {
     borderBottomWidth: 2,
     borderBottomColor: "#1877f2",
-  },
-  navIcon: {
-    fontSize: 20,
   },
   createPostSection: {
     flexDirection: "row",
@@ -271,9 +296,6 @@ const styles = StyleSheet.create({
     marginLeft: 12,
     padding: 8,
   },
-  photoIcon: {
-    fontSize: 20,
-  },
   storiesContainer: {
     backgroundColor: "#ffffff",
     paddingVertical: 10,
@@ -297,11 +319,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 2,
     borderColor: "#1877f2",
-  },
-  plusIcon: {
-    fontSize: 24,
-    color: "#1877f2",
-    fontWeight: "bold",
   },
   storyItem: {
     alignItems: "center",
@@ -358,10 +375,6 @@ const styles = StyleSheet.create({
   moreButton: {
     padding: 8,
   },
-  moreText: {
-    fontSize: 20,
-    color: "#65676b",
-  },
   postContent: {
     fontSize: 14,
     lineHeight: 20,
@@ -383,6 +396,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#e4e6ea",
   },
+  leftStats: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
   rightStats: {
     flexDirection: "row",
   },
@@ -398,7 +415,9 @@ const styles = StyleSheet.create({
   },
   actionButton: {
     flex: 1,
+    flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     paddingVertical: 8,
   },
   actionText: {
