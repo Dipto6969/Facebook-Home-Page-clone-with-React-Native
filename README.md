@@ -14,7 +14,7 @@ A pixel-perfect React Native clone of the Facebook mobile app's home page interf
 
 ## 🚀 Demo
 
-![Facebook Clone Demo](https://scontent.fdac14-1.fna.fbcdn.net/v/t1.15752-9/525926474_24654561254162099_883079590717313639_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeG7VOZAzwMnHgGhrCVj64mqBL3hYWepBskEveFhZ6kGySGZ4lKT8zFguzPXJI0FOuybMff67VggdM8DfPEKDiyX&_nc_ohc=kPuZ7EN3pFcQ7kNvwGmJI6d&_nc_oc=AdlbmAscrxUgLAQGDIEFM0wmTkP-KO8238XRELq4JdAsDLZ08YRVflfNplxDVKemg9g&_nc_zt=23&_nc_ht=scontent.fdac14-1.fna&oh=03_Q7cD3AEiYNwQF2H10C6hYpAm2kIgrgiV-CpHRaoLQrTvHCWx7Q&oe=68B733B9)
+![Facebook Clone Demo]([https://scontent.fdac14-1.fna.fbcdn.net/v/t1.15752-9/525926474_24654561254162099_883079590717313639_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeG7VOZAzwMnHgGhrCVj64mqBL3hYWepBskEveFhZ6kGySGZ4lKT8zFguzPXJI0FOuybMff67VggdM8DfPEKDiyX&_nc_ohc=kPuZ7EN3pFcQ7kNvwGmJI6d&_nc_oc=AdlbmAscrxUgLAQGDIEFM0wmTkP-KO8238XRELq4JdAsDLZ08YRVflfNplxDVKemg9g&_nc_zt=23&_nc_ht=scontent.fdac14-1.fna&oh=03_Q7cD3AEiYNwQF2H10C6hYpAm2kIgrgiV-CpHRaoLQrTvHCWx7Q&oe=68B733B9](https://scontent.fdac14-1.fna.fbcdn.net/v/t1.15752-9/541168147_717590124649361_7579560640138355344_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeEt8uBz8vjZ_HugmiEGHLF9svphbl0s5luy-mFuXSzmWxy0tChIrBBm9ddaxl17h_aJt2Eq8ZrtmQb-hzjaSLj4&_nc_ohc=WKTYLR4DkagQ7kNvwF69he-&_nc_oc=AdnVFZq5WCnjgFCdpbNuOYmfq9EQNWpdDafMi0gbXxqdOY0c0EA28JbuZkMgGF5Kfjk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fdac14-1.fna&oh=03_Q7cD3AE-jC5iGPg0EKDPlIUNbImvdWHJx8pNhjyqU6eYWaE3Gg&oe=68D90154))
 
 
 ## 🛠️ Technologies Used
