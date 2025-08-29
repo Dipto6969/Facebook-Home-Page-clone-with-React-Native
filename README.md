@@ -14,8 +14,7 @@ A pixel-perfect React Native clone of the Facebook mobile app's home page interf
 
 ## 🚀 Demo
 
-![Facebook Clone Demo](<img width="334" height="2052" alt="image" src="https://github.com/user-attachments/assets/a6ce8471-bcf2-48aa-84fe-6ea899aabedd" />
-)
+![Facebook Clone Demo](file:///F:/Downloads/facebook%20Home%20Page.jpg)
 
 
 ## 🛠️ Technologies Used
